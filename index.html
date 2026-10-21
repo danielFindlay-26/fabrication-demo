@@ -3,39 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Orders</title>
 
-    <title>My First Supabase App</title>
-
-    <style.css>
     <link rel="stylesheet" href="style.css">
 
-    <!-- Supabase Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
     <div class="container">
 
-        <h1>My First Supabase App</h1>
+        <h1>Work Order Manager</h1>
 
-        <p>Add a note and save it to your Supabase database.</p>
+        <h2>Create Work Order</h2>
+
+        <input type="number" id="jobNumber" placeholder="Job Number">
 
         <textarea
-            id="noteInput"
-            placeholder="Type your note here..."
+            id="description"
+            placeholder="Description"
         ></textarea>
 
-        <button onclick="saveNote()">
-            Save Note
+        <input
+            type="text"
+            id="status"
+            placeholder="Status (Open, In Progress, Complete)"
+        >
+
+        <button onclick="createWorkOrder()">
+            Create Work Order
         </button>
 
-        <h2>Saved Notes</h2>
+        <hr>
 
-        <ul id="notesList"></ul>
+        <h2>Existing Work Orders</h2>
+
+        <button onclick="loadWorkOrders()">
+            Refresh
+        </button>
+
+        <table id="workOrdersTable">
+            <thead>
+                <tr>
+                    <th>Job Number</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Update Status</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
 
     </div>
 
-    <!-- JavaScript -->
     <script src="app.js"></script>
 
 </body>
