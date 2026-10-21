@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My First Supabase App</title>
+
+    <style.css>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>My First Supabase App</h1>
+
+        <p>Add a note and save it to your Supabase database.</p>
+
+        <textarea
+            id="noteInput"
+            placeholder="Type your note here..."
+        ></textarea>
+
+        <button onclick="saveNote()">
+            Save Note
+        </button>
+
+        <h2>Saved Notes</h2>
+
+        <ul id="notesList"></ul>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+
+</body>
+</html>
