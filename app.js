@@ -1,12 +1,19 @@
-const SUPABASE_URL = "YOUR_SUPABASE_URL";
-const SUPABASE_KEY = "YOUR_ANON_KEY";
+// ================================
+// Supabase Connection
+// ================================
+
+const SUPABASE_URL = "https://vufryjehklpfyalkbhhe.supabase.co/rest/v1/";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1ZnJ5amVoa2xwZnlhbGtiaGhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI0Nzk1NTcsImV4cCI6MjEwODA1NTU1N30.B5_CgW589cShaUpoRfga6Jkzkz4clD4xX-UziQht-2I";
 
 const supabaseClient = supabase.createClient(
-   const SUPABASE_URL = "https://vufryjehklpfyalkbhhe.supabase.co/rest/v1/";
-    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1ZnJ5amVoa2xwZnlhbGtiaGhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI0Nzk1NTcsImV4cCI6MjEwODA1NTU1N30.B5_CgW589cShaUpoRfga6Jkzkz4clD4xX-UziQht-2I"
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
-// Load all work orders
+// ================================
+// Load Work Orders
+// ================================
+
 async function loadWorkOrders() {
 
     const { data, error } = await supabaseClient
@@ -40,7 +47,6 @@ async function loadWorkOrders() {
                     id="status-${order.job_number}"
                     placeholder="New Status"
                 >
-
                 <button
                     onclick="updateStatus(${order.job_number})"
                 >
@@ -55,11 +61,15 @@ async function loadWorkOrders() {
 
 }
 
-// Create new work order
+// ================================
+// Create Work Order
+// ================================
+
 async function createWorkOrder() {
 
-    const jobNumber =
-        parseInt(document.getElementById("jobNumber").value);
+    const jobNumber = parseInt(
+        document.getElementById("jobNumber").value
+    );
 
     const description =
         document.getElementById("description").value;
@@ -68,7 +78,9 @@ async function createWorkOrder() {
         document.getElementById("status").value;
 
     if (!jobNumber || !description || !status) {
+
         alert("Please complete all fields");
+
         return;
     }
 
@@ -83,8 +95,11 @@ async function createWorkOrder() {
         ]);
 
     if (error) {
+
         console.error(error);
+
         alert("Error creating work order");
+
         return;
     }
 
@@ -95,18 +110,23 @@ async function createWorkOrder() {
     document.getElementById("status").value = "";
 
     loadWorkOrders();
+
 }
 
-// Update status
+// ================================
+// Update Status
+// ================================
+
 async function updateStatus(jobNumber) {
 
-    const newStatus =
-        document.getElementById(
-            `status-${jobNumber}`
-        ).value;
+    const newStatus = document.getElementById(
+        `status-${jobNumber}`
+    ).value;
 
     if (!newStatus) {
-        alert("Enter a status");
+
+        alert("Please enter a new status");
+
         return;
     }
 
@@ -118,13 +138,22 @@ async function updateStatus(jobNumber) {
         .eq("job_number", jobNumber);
 
     if (error) {
+
         console.error(error);
-        alert("Update failed");
+
+        alert("Status update failed");
+
         return;
     }
 
+    alert("Status Updated");
+
     loadWorkOrders();
+
 }
 
-// Initial load
+// ================================
+// Initial Page Load
+// ================================
+
 loadWorkOrders();
