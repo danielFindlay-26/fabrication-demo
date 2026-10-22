@@ -1,9 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Work Order Manager</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
-    <h1>Hello GitHub Pages V2</h1>
+
+    <div class="container">
+
+        <h1>Work Order Manager</h1>
+
+        <h2>Create Work Order</h2>
+
+        <input
+            type="number"
+            id="jobNumber"
+            placeholder="Job Number"
+        >
+
+        <textarea
+            id="description"
+            placeholder="Work Order Description"
+        ></textarea>
+
+        <input
+            type="text"
+            id="status"
+            placeholder="Status (Open, In Progress, Complete)"
+        >
+
+        <button onclick="createWorkOrder()">
+            Create Work Order
+        </button>
+
+        <hr>
+
+        <h2>Current Work Orders</h2>
+
+        <button onclick="loadWorkOrders()">
+            Refresh Work Orders
+        </button>
+
+        <table id="workOrdersTable">
+
+            <thead>
+                <tr>
+                    <th>Job Number</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Update Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="app.js"></script>
+
 </body>
+
 </html>
