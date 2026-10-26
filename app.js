@@ -26,6 +26,23 @@ async function checkLogin() {
 
 }
 
+// check users 
+const {
+    data: { user }
+} = await supabaseClient.auth.getUser();
+
+console.log(user.id);
+
+//read profile 
+const { data } = await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq("id", user.id)
+    .single();
+
+console.log(data.role);
+
+
 //=======
 // Logout function
 
