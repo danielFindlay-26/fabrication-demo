@@ -25,6 +25,16 @@ async function checkLogin() {
     }
 
 }
+
+//=======
+// Logout function
+
+async function logout() {
+
+    await supabaseClient.auth.signOut();
+
+    window.location.href = "login.html";
+}
 // ================================
 // Load Work Orders
 // ================================
